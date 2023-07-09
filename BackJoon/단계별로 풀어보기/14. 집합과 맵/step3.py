@@ -3,9 +3,6 @@
 import sys
 
 N = int(sys.stdin.readline())
-
-member = []
-
 dic = {}
 
 for _ in range(N):
