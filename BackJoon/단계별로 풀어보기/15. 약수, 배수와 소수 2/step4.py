@@ -1,12 +1,30 @@
-def gcd(x,y): #최대공약수, 유클리드 호제
-    mod = x % y
-    while mod >0:
-        x = y
-        y = mod
-        mod = x % y
-    return y    
+# 2485번, 가로수
 
-A, B = map(int, input().split())
-C, D = map(int, input().split())
-N = gcd(A*D + C*B, B*D) 
-print((A*D + C*B)//N, B*D//N)
+import sys
+input = sys.stdin.readline
+
+def gcd_func(a, b):
+    while b != 0:
+        a, b = b, a % b
+
+    return a
+
+N = int(input())
+
+trees = [int(input()) for _ in range(N)]
+
+gaps = []
+for i in range(1, N):
+    gaps.append(trees[i] - trees[i - 1])
+
+gaps_set = list(set(gaps))
+
+gcd = gaps_set[0]
+for i in range(1, len(gaps_set)):
+    gcd = gcd_func(gcd, gaps_set[i])
+
+anwser_tree_cnt = 0
+for gap in gaps:
+    anwser_tree_cnt += gap // gcd - 1
+
+print(anwser_tree_cnt)
