@@ -17,9 +17,9 @@ while(True):
         if check.find("[]") != -1:
             check = check.replace("[]", "")
         
-        print(check)
+        # print(check)
     
-    if len(check) <= 1:
-        print("yes")
-    else:
+    if '[' in check or ']' in check or '(' in check or ')' in check:
         print("no")
+    else:
+        print("yes")
